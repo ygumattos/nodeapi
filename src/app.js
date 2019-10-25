@@ -1,6 +1,6 @@
 import express from 'express';
 
-class App{
+class App {
   constructor() {
     this.server();
 
@@ -8,11 +8,7 @@ class App{
     this.routes();
   }
 
-  middlewares() {
+  middlewares() {}
 
-  }
-
-  routes() {
-    
-  }
+  routes() {}
 }
