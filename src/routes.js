@@ -10,8 +10,8 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-// routes.use(AuthMiddleware);
+routes.use(AuthMiddleware);
 
-routes.put('/users/:id', UserController.update);
+routes.get('/users/:id', UserController.index);
 
 export default routes;

@@ -1,8 +1,24 @@
-// import jwt from 'jsonwebtoken';
-// import { promisify } from 'util';
+import jwt from 'jsonwebtoken';
+import { promisify } from 'util';
 
-// import User from '../models/User';
+import authConfig from '../../config/auth';
 
-// import authConfig from '../../config/auth';
+export default async (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-// export default async (req, res, next) => {};
+  if (!authHeader) {
+    return res.status(401).json({ error: 'Token não informado' });
+  }
+
+  const [, token] = authHeader.split(' ');
+
+  try {
+    const decoded = await promisify(jwt.verify)(token, authConfig.secret);
+
+    req.userID = decoded.id;
+
+    return next();
+  } catch (error) {
+    return res.status(401).json({ error: 'Token não autorizado' });
+  }
+};

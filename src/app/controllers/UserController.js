@@ -1,6 +1,6 @@
 // import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
-
+import { addMinutes, isAfter } from 'date-fns';
 // import authConfig from '../../config/auth';
 import User from '../models/User';
 import Telephone from '../models/Telephone';
@@ -50,8 +50,20 @@ class UserController {
       .json({ _id, createdAt, updatedAt, ultimo_login, token });
   }
 
-  async update(req, res) {
-    res.json({ ok: 'true' });
+  async index(req, res) {
+    if (!(req.userID === req.params.id)) {
+      return res.status(401).json({ mensagem: 'Não autorizado' });
+    }
+
+    const user = await User.findById(req.userID);
+
+    const dateWithSet = addMinutes(user.ultimo_login, 30);
+
+    if (isAfter(new Date(), dateWithSet)) {
+      return res.status(401).json({ mensagem: 'Sessão inválida' });
+    }
+
+    return res.json(user);
   }
 }
 
