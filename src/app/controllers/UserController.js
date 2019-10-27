@@ -1,3 +1,6 @@
+// import jwt from 'jsonwebtoken';
+
+// import authConfig from '../../config/auth';
 import User from '../models/User';
 import Telephone from '../models/Telephone';
 
@@ -14,11 +17,14 @@ class UserController {
       email: req.body.email,
       senha_hash: req.body.senha_hash,
       telefone: telephone._id,
+      ultimo_login: new Date(),
     });
 
     await user.populate('telefone').execPopulate();
 
-    return res.json(user);
+    const { _id, createdAt, updatedAt, ultimo_login, token } = user;
+
+    return res.json({ _id, createdAt, updatedAt, ultimo_login, token });
   }
 }
 

@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+import authConfig from '../../config/auth';
 
 const UserSchema = new mongoose.Schema(
   {
@@ -21,6 +24,12 @@ const UserSchema = new mongoose.Schema(
         ref: 'Telephone',
       },
     ],
+    token: {
+      type: String,
+    },
+    ultimo_login: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
@@ -39,7 +48,16 @@ const hashSenha = async function() {
   }
 };
 
+// Criando token JWT
+
+const tokenJWT = function() {
+  this.token = jwt.sign({ id: this._id }, authConfig.secret, {
+    expiresIn: authConfig.expiresIn,
+  });
+};
+
 UserSchema.pre('save', hashSenha);
+UserSchema.pre('save', tokenJWT);
 
 // Função para comparar senha
 
