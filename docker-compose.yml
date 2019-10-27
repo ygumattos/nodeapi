@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mongo-sky:
+    image: mongo
+    container_name: mongosky
+    ports:
+      - '27017:27017'
+    networks:
+      - api-network
+
+  api-sky:
+    build: .
+    container_name: api-sky
+    volumes:
+      - .:/home/node/api
+      - /home/node/api/node_modules
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongo-sky
+    networks:
+      - api-network
+
+
+networks:
+  api-network:
+    driver: bridge
