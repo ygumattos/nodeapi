@@ -1,7 +1,6 @@
-// import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
-import { addMinutes, isAfter } from 'date-fns';
-// import authConfig from '../../config/auth';
+import moment from 'moment';
+
 import User from '../models/User';
 import Telephone from '../models/Telephone';
 
@@ -57,9 +56,10 @@ class UserController {
 
     const user = await User.findById(req.userID);
 
-    const dateWithSet = addMinutes(user.ultimo_login, 30);
+    const isLessThanThirtyMinutes =
+      moment(user.ultimo_login).diff(moment(), 'minutes') < 30;
 
-    if (isAfter(new Date(), dateWithSet)) {
+    if (!isLessThanThirtyMinutes) {
       return res.status(401).json({ mensagem: 'Sessão inválida' });
     }
 
