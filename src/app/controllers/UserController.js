@@ -49,6 +49,10 @@ class UserController {
       .status(201)
       .json({ _id, createdAt, updatedAt, ultimo_login, token });
   }
+
+  async update(req, res) {
+    res.json({ ok: 'true' });
+  }
 }
 
 export default new UserController();
