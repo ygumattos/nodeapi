@@ -12,7 +12,7 @@ class UserController {
     const user = await User.create({
       nome: req.body.nome,
       email: req.body.email,
-      senha: req.body.senha,
+      senha_hash: req.body.senha_hash,
       telefone: telephone._id,
     });
 
