@@ -14,6 +14,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    telefone: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Telephone',
+      },
+    ],
   },
   {
     timestamps: true,
