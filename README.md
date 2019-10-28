@@ -49,9 +49,16 @@ passado na criação ou sign in de um usuário.
 
 ## Sugestão de visualização (Insomnia)
 
-<img src="https://drive.google.com/file/d/1aDjIP7LtNn4qLmlsS0frwNu_9KPSRgHZ/view?usp=sharing">
+<img src="https://i.ibb.co/94Kx7T7/insomnia.png" alt="insomnia" border="0">
 
 * ``` "base_url": "http://localhost:3001" ```
+
+#### Users
+- Sign Up: (POST) base_url/users
+- Buscar usuario: (GET) base_url/users/:id
+
+#### Sessions
+- Sign in: (POST) base_url/sessions
 
 ## Iniciar o projeto:
 ### Opção 01:
