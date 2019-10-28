@@ -49,7 +49,7 @@ passado na criação ou sign in de um usuário.
 
 ## Sugestão de visualização (Insomnia)
 
-<img src="https://drive.google.com/open?id=1aDjIP7LtNn4qLmlsS0frwNu_9KPSRgHZ">
+<img src="https://drive.google.com/file/d/1aDjIP7LtNn4qLmlsS0frwNu_9KPSRgHZ/view?usp=sharing">
 
 * ``` "base_url": "http://localhost:3001" ```
 
