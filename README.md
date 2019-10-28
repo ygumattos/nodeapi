@@ -1,6 +1,6 @@
 # API for SKY
 
-### Essa aplicação tem como objetivo realizar o sign in a sign up de usuários, gerando tokens JWT que persistem com o mesmo e seu tempo de login não ultrapasse 30min ate que seja necessário renovar.
+- Essa aplicação tem como objetivo realizar o sign in a sign up de usuários, gerando tokens JWT que persistem com o mesmo e seu tempo de login não ultrapasse 30min ate que seja necessário renovar.
 
 ## Proposta:
 - Criar um aplicativo backend que irá expor uma API RESTful de criação de sing up/sign
